@@ -40,7 +40,9 @@ class DataEntryController extends Controller
 
     public function addTrip(AddTripRequest  $request)
     {
+
         $trip = $this->TripService->createTrip($request);
+        if ($trip==0)return $this->apiResponse(0,"size of array equal 0",200);
         return $this->apiResponse($trip,"Add New Trip Successfully",201);
     }
 
@@ -51,6 +53,23 @@ class DataEntryController extends Controller
             return $this->apiResponse(null, "Trip deleted successfully", 200);
         }
         return $this->apiResponse(null, "Trip not found", 404);
+    }
+    public function deleteTripImage($tripId, $imageId){
+        $deleted = $this->TripService->deleteTripImage($tripId, $imageId);
+        if ($deleted) {
+            return $this->apiResponse(null, "Trip image deleted successfully", 200);
+        }else{
+            return $this->apiResponse(null, "Trip image not found", 404);
+        }
+    }
+    public function deleteTripVideo($tripId, $videoId)
+    {
+        $deleted = $this->TripService->deleteTripVideo($tripId, $videoId);
+        if ($deleted) {
+            return $this->apiResponse(null, "Trip video deleted successfully", 200);
+        }else{
+            return $this->apiResponse(null, "Trip video not found", 404);
+        }
     }
 
     public function markJobOpen($id)
@@ -100,7 +119,19 @@ class DataEntryController extends Controller
     public function getParents()
     {
         $parents = $this->GuardianService->getGuardiansWithPendingStudents();
-        return $this->apiResponse($parents, "Guardians retrieved successfully", 200);
+        return $this->apiResponse($parents, "Guardians with pending students retrieved successfully", 200);
+    }
+    ///function retrieves recent guardians who have students with a status of "قيد الانتظار" (which means "Pending" in English),
+    public function getRecentParents(){
+        $parents = $this->GuardianService->getRecentGuardiansWithPendingStudents();
+        return $this->apiResponse($parents,"Recent Guardians with pending students retrieved successfully", 200);
+    }
+
+    ///function retrieves guardians who have students with a status of "مقبول" (which means "Accepted" in English),
+    public function getParentsWithAcceptedStudents()
+    {
+        $parents = $this->GuardianService->getGuardiansWithAcceptedStudents();
+        return $this->apiResponse($parents,"Recent Guardians with accepted students retrieved successfully", 200);
     }
 
     public function getParent($id)
@@ -149,4 +180,9 @@ class DataEntryController extends Controller
         return $this->apiResponse($student, 'Student added successfully outside the school.', 201);
     }
 
+    public function getAcceptedStudents()
+    {
+        $students = $this->StudentService->getAcceptedStudents();
+        return $this->apiResponse($students, "Accepted students retrieved successfully", 200);
+    }
 }

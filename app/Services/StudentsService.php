@@ -26,14 +26,35 @@ class StudentsService
             ->get();
     }
 
+    public function getAcceptedStudents()
+    {
+        return DB::table('students as s')
+            ->join('users as u', 's.user_id', '=', 'u.id')
+            ->join('grades as g', 's.current_grade_id', '=', 'g.id')
+            ->join('guardians as gu', 's.guardian_id', '=', 'gu.user_id') // Join with the guardians table
+            ->join('users as guardian_user', 'gu.user_id', '=', 'guardian_user.id') // Join to get the guardian's user details
+            ->select(
+                'u.id as user_id',
+                'u.name',
+                'u.passport_number',
+                's.code',
+                's.birthdate',
+                's.phone',
+                'g.name as current_grade',
+                'guardian_user.id as parent_id', // Guardian's ID
+                'guardian_user.name as parent_name' // Guardian's name
+            )
+            ->where('s.status', 'مقبول')
+            ->get();
+    }
 
     public function createStudent($student,$guardian_id)
     {
         $user = $this->UserService->createUser($student,'student');
         return Student::create([
-           'user_id' => $user->id,
-           'guardian_id' => $guardian_id,
-           'birthdate'=>$student['birthdate'],
+            'user_id' => $user->id,
+            'guardian_id' => $guardian_id,
+            'birthdate'=>$student['birthdate'],
             'gender'=>$student['gender'],
             'SSN'=>$student['SSN'],
             'phone'=>$student['phone'],
@@ -58,7 +79,7 @@ class StudentsService
 
     public function getStudent($studentId)
     {
-        return Student::find($studentId);
+        return Student::where('user_id', $studentId)->first();
     }
 
 
@@ -92,7 +113,7 @@ class StudentsService
         $yearSuffix = substr($academicYear, -2);
         $lastCode = Setting::where('key', 'last_student_code')->first()->value;
 
-      //Generate the new student code
+        //Generate the new student code
         $nextNumber = (int)$lastCode + 1;
         $newCode = 'STU' . $yearSuffix . $nextNumber;
 

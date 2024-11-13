@@ -28,9 +28,11 @@ class AddTripRequest extends FormRequest
         return [
             'title' => 'required|max:50',
             'subtitle' => 'required|max:350',
-            'date' => 'required|date_format:Y-m-d',
+            'date' => 'required|date_format:d-m-Y',
             'description' => 'nullable',
-            'image' => 'nullable|image',
+            'images' => 'array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'videos' => 'array',
         ];
     }
     protected function failedValidation(Validator $validator)
@@ -48,8 +50,8 @@ class AddTripRequest extends FormRequest
             'subtitle.required' => 'العنوان الفرعي مطلوب.',
             'subtitle.max' => 'يجب ألا يزيد العنوان الفرعي عن 350 حرفًا.',
             'date.required' => 'التاريخ مطلوب.',
-            'date.date_format' => 'يجب أن يكون التاريخ بصيغة YYYY-MM-DD.',
-            'image.image' => 'يجب أن تكون الصورة من نوع صورة.',
+            'date.date_format' => 'يجب أن يكون التاريخ بصيغة DD-MM-YYYY.',
+            'images.*.image' => 'يجب أن تكون كل صورة بصيغة صحيحة.',
         ];
     }
 }

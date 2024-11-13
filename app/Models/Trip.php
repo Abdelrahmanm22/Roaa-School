@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Carbon\Carbon;
+
 class Trip extends Model
 {
     use HasFactory;
@@ -15,9 +16,23 @@ class Trip extends Model
         'date',
         'day',
         'description',
-        'image',
     ];
 
+    public function images()
+    {
+        return $this->hasMany(TripImage::class);
+    }
+
+    public function videos()
+    {
+        return $this->hasMany(TripVideo::class);
+    }
+
+    //This accessor will format the date as d-m-Y whenever you access it (e.g., $trip->date will show d-m-Y format).
+    public function getDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('d-m-Y');
+    }
 
     // Filters trips where the date is greater than today
     public function scopeNextTrips(Builder $builder)

@@ -45,6 +45,11 @@ class MediaController extends Controller
         return $this->apiResponse($subjects, 'Subjects retrieved successfully',200);
     }
 
+    public function getVideos(){
+        $videos = $this->VideoService->getAllVideosWithDetails();
+        return $this->apiResponse($videos,"Videos retrieved successfully",200);
+    }
+
     public function deleteVideo($id)
     {
 

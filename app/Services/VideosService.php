@@ -4,9 +4,27 @@ namespace App\Services;
 
 use App\Models\Student;
 use App\Models\Video;
+use Illuminate\Support\Facades\DB;
 
 class VideosService
 {
+    public function getAllVideosWithDetails()
+    {
+        return DB::table('videos')
+            ->join('subjects', 'videos.subject_id', '=', 'subjects.id')
+            ->join('terms', 'videos.term_id', '=', 'terms.id')
+            ->join('grades', 'videos.grade_id', '=', 'grades.id')
+            ->select(
+                'videos.id',
+                'videos.name as name',
+                'videos.link',
+                'subjects.name as subject_name',
+                'terms.name as term_name',
+                'grades.name as grade_name'
+            )
+            ->orderByDesc('videos.created_at')
+            ->get();
+    }
     public function getVideo($id)
     {
         return Video::find($id);

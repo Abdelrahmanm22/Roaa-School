@@ -45,6 +45,8 @@ Route::group(['middleware'=>'jwt.verify'],function(){
     Route::group(['middleware'=>'dataEntry'],function (){
         Route::post('/trip/add',[\App\Http\Controllers\Api\DataEntryController::class,'addTrip']);
         Route::delete('/trip/delete/{id}',[\App\Http\Controllers\Api\DataEntryController::class,'deleteTrip']);
+        Route::delete('/trips/{tripId}/images/{imageId}', [\App\Http\Controllers\Api\DataEntryController::class, 'deleteTripImage']);
+        Route::delete('/trips/{tripId}/videos/{imageId}',[\App\Http\Controllers\Api\DataEntryController::class, 'deleteTripVideo']);
         Route::put('/jobs/{id}/open', [\App\Http\Controllers\Api\DataEntryController::class, 'markJobOpen']);
         Route::get('/jobs', [\App\Http\Controllers\Api\DataEntryController::class, 'getAllJobs']);
         Route::get('/job/{id}', [\App\Http\Controllers\Api\DataEntryController::class, 'getJob']);
@@ -52,12 +54,15 @@ Route::group(['middleware'=>'jwt.verify'],function(){
         Route::get('/countNewStudents',[\App\Http\Controllers\Api\DataEntryController::class,'newStudents']);
         Route::get('/countAcceptedStudents',[\App\Http\Controllers\Api\DataEntryController::class,'acceptedStudents']);
         Route::get('/parents/pendingStudents',[\App\Http\Controllers\Api\DataEntryController::class,'getParents']);
+        Route::get('/recentParents/pendingStudents',[\App\Http\Controllers\Api\DataEntryController::class,'getRecentParents']);
+        Route::get('/parents/acceptedStudents',[\App\Http\Controllers\Api\DataEntryController::class,'getParentsWithAcceptedStudents']);
         Route::get('/parent/{id}',[\App\Http\Controllers\Api\DataEntryController::class,'getParent']);
         Route::put('/student/{studentId}/status',[\App\Http\Controllers\Api\DataEntryController::class,'updateStudentStatus']);
         Route::get('/student/{studentId}/subjects',[\App\Http\Controllers\Api\DataEntryController::class,'getSubjectsForStudent']);
         Route::get('/students/{gradeId}/{termId}',[\App\Http\Controllers\Api\DataEntryController::class,'getStudentsByGradeAndTerm']);
         Route::post('/results/add', [\App\Http\Controllers\Api\DataEntryController::class, 'addResults']);
         Route::post('/student/add',[\App\Http\Controllers\Api\DataEntryController::class,'addStudent']);
+        Route::get('/students/accepted',[\App\Http\Controllers\Api\DataEntryController::class,'getAcceptedStudents']);
     });
     ///these are routes for admin and media
     Route::group(['middleware'=>'media'],function (){
@@ -65,6 +70,7 @@ Route::group(['middleware'=>'jwt.verify'],function(){
         Route::post('/subjects', [\App\Http\Controllers\Api\MediaController::class, 'getSubjects']);
         Route::post('/video/add',[\App\Http\Controllers\Api\MediaController::class,'createVideo']);
         Route::delete('/deleteVideo/{id}',[\App\Http\Controllers\Api\MediaController::class,'deleteVideo']);
+        Route::get('/videos',[\App\Http\Controllers\Api\MediaController::class,'getVideos']);
     });
     ///these are routes for admin, media, dataEntry
     Route::group(['middleware' => ['jwt.verify', 'media.dataEntry']], function () {
