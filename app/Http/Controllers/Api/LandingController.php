@@ -25,11 +25,13 @@ class LandingController extends Controller
     protected $JobService;
     protected $GuardianService;
     protected $StudentService;
-    public function __construct(GuardiansService $GuardianService,StudentsService $StudentService,JobsService $JobService)
+    protected $UsersService;
+    public function __construct(GuardiansService $GuardianService,StudentsService $StudentService,JobsService $JobService,UsersService $UsersService)
     {
         $this->GuardianService = $GuardianService;
         $this->StudentService = $StudentService;
         $this->JobService = $JobService;
+        $this->UsersService = $UsersService;
     }
 
     public function addGuardianWithStudents(AddGuardianWithStudentsRequest $request){
@@ -62,5 +64,18 @@ class LandingController extends Controller
     {
         $job = $this->JobService->createJob($request);
         return $this->apiResponse($job, "Job created successfully", 201);
+    }
+    public function checkPassportNumber(Request $request)
+    {
+        $request->validate([
+            'passport_number' => 'required|string|max:50',
+        ]);
+
+        $exists = $this->UsersService->passportNumberExists($request->passport_number);
+
+        if ($exists) {
+            return $this->apiResponse(null, "Passport number already exists.", 409);
+        }
+        return $this->apiResponse(null, "Passport number is available.", 200);
     }
 }

@@ -19,4 +19,10 @@ class UsersService
             'role' => $role,
         ]);
     }
+
+    public function passportNumberExists($passportNumber)
+    {
+        return User::where('passport_number', $passportNumber)->exists();
+    }
+
 }

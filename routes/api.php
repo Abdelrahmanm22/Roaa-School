@@ -89,3 +89,5 @@ Route::group(['middleware'=>'jwt.verify'],function(){
 Route::get('/trips',[\App\Http\Controllers\Api\LandingController::class,'trips']);
 Route::post('/job/add', [\App\Http\Controllers\Api\LandingController::class, 'createJob']);
 Route::post('/register',[\App\Http\Controllers\Api\LandingController::class,'addGuardianWithStudents']);
+Route::post('/check-passport-number', [\App\Http\Controllers\Api\LandingController::class, 'checkPassportNumber']);
+
