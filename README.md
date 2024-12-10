@@ -106,13 +106,18 @@ Traditional school management systems often lack efficiency, accessibility, and 
 
 ## Diagrams
 - **Sitemap Diagram**
-  ![Sitemap Diagram](https://github.com/Abdelrahmanm22/Roaa-School/blob/main/database.png)
+  ![Sitemap Diagram](https://github.com/Abdelrahmanm22/Roaa-School/blob/main/Diagrams/Sitemap-1.png)
 - **Class Diagram**
+  ![Class Diagram](https://github.com/Abdelrahmanm22/Roaa-School/blob/main/Diagrams/Roaa%20Class%20Diagram.jpg)
+- **Entity-Relationship Diagram (ERD)**
+  ![ERD Diagram](https://github.com/Abdelrahmanm22/Roaa-School/blob/main/Diagrams/Roaa%20ERD.jpg)
 - **Sequence Diagrams**
     1. Parent retrieves student information.
+       ![Sequence1 Diagram](https://github.com/Abdelrahmanm22/Roaa-School/blob/main/Diagrams/a%20parent%20to%20retrieve%20their%20students'%20information%20along%20with%20results%20for%20specific%20grades%20and%20terms.png)
     2. Data entry updates student status.
+       ![Sequence2 Diagram](https://github.com/Abdelrahmanm22/Roaa-School/blob/main/Diagrams/DataEntry%20updates%20a%20student's%20status.png)
     3. Student accesses subjects, videos, and marks them as watched.
-- **Entity-Relationship Diagram (ERD)**
+       ![Sequence3 Diagram](https://github.com/Abdelrahmanm22/Roaa-School/blob/main/Diagrams/Student%20Accessing%20Subjects%2C%20Videos%2C%20and%20Marking%20as%20Watched.png)
 
 *Diagrams are included in the project repository.*
 
