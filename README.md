@@ -1,66 +1,119 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sudanese School Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Introduction
+The Sudanese School Management System is a comprehensive platform designed to enhance school operations by connecting parents, students, teachers, and administrators. It simplifies access to student results, fees, lesson videos, and administrative processes such as event and trip management.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Problem Definition
+Traditional school management systems often lack efficiency, accessibility, and centralized data management. This project addresses these challenges by providing a streamlined, user-friendly solution.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Objective
+- Centralize school data and operations.
+- Enhance communication between stakeholders.
+- Simplify management of events, trips, and student applications.
+- Provide secure access to academic and financial information.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## System Features
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### **General Features**
+- Landing page showcasing the school, services, latest news, and trips.
+- Parents can apply for their children and upload required data.
+- Teachers can apply for job positions through the system.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### **Role-Based Features**
 
-## Laravel Sponsors
+#### **Parent**
+- View all children enrolled in the school.
+- Access each child’s profile and detailed results.
+- Filter results by semester and academic year.
+- View fees paid and pending for each child.
+- Access upcoming trips and events.
+- Switch to the child’s account to assist younger students.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+#### **Student**
+- Log in and watch videos for current semester lessons.
+- View detailed results filtered by semester and academic year.
 
-### Premium Partners
+#### **Data Entry**
+- Add, update, or delete events and trips.
+- Review and manage parent applications for student admission.
+- Approve or reject students (update status).
+- Add results for each student.
+- View profiles of registered parents and students.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+#### **Media Personnel**
+- Upload and manage lesson videos.
+- Assign videos to specific subjects, semesters, and academic years.
 
-## Contributing
+#### **Super Administrator**
+- Manage roles for data entry, media personnel, and other administrators.
+- Assign permissions for each role.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## Project Methodology
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. **Requirements**
+    - **Hardware:** Server for hosting, user devices for access.
+    - **Software:** Laravel, Next.js, Figma.
 
-## Security Vulnerabilities
+2. **Design**
+    - Prototypes created with Figma for user-friendly interfaces.
+    - Database schemas and models defined for complex relationships.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+3. **Implementation**
+    - **Backend:** Developed with Laravel for secure and scalable operations.
+    - **Frontend:** Built with React (Next.js) for a responsive experience.
 
-## License
+4. **Testing**
+    - Unit testing for backend functionalities.
+    - User acceptance testing for end-user requirements.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5. **Deployment & Maintenance**
+    - Deployed on a secure hosting platform.
+    - Regular updates for improvements and bug fixes.
+
+---
+
+## Tech Stack
+- **UI/UX Design:** Figma
+- **Frontend:** React (Next.js)
+- **Backend:** Laravel
+- **Database:** MySQL
+
+---
+
+## Specifications
+
+### Functional Requirements
+- Parent dashboard for child monitoring.
+- Student dashboard for video lessons and results tracking.
+- Data entry management for events, trips, and student status.
+- Media management for video content.
+- Role and permission management for administrators.
+
+### Non-Functional Requirements
+- Scalable architecture for growing user base.
+- High-security standards for sensitive data.
+- Responsive design for all devices.
+
+---
+
+## Diagrams
+- **Sitemap Diagram**
+  ![Sitemap Diagram](https://github.com/Abdelrahmanm22/Roaa-School/blob/main/database.png)
+- **Class Diagram**
+- **Sequence Diagrams**
+    1. Parent retrieves student information.
+    2. Data entry updates student status.
+    3. Student accesses subjects, videos, and marks them as watched.
+- **Entity-Relationship Diagram (ERD)**
+
+*Diagrams are included in the project repository.*
+
+---

@@ -16,7 +16,6 @@ class StudentUser implements UserTypeInterface
         return [
             'user' => $user,
             'student_info' => $student,
-
         ];
     }
 }
