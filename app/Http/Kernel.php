@@ -75,6 +75,7 @@ class Kernel extends HttpKernel
         'dataEntry'=>dataEntryCheck::class,
         'media'=>mediaCheck::class,
         'media.dataEntry' => \App\Http\Middleware\adminMediaDataEntryCheck::class,
+        'parent.student'=>\App\Http\Middleware\parentStudentCheck::class,
 
     ];
 }

@@ -81,9 +81,16 @@ Route::group(['middleware'=>'jwt.verify'],function(){
         Route::get('/nextTrips',[\App\Http\Controllers\Api\GuardianController::class,'trips']);
         Route::post('/parent/login-child/{child_id}', [\App\Http\Controllers\Api\GuardianController::class, 'loginToChild']);
         Route::get('/myStudents/{guardianId}',[\App\Http\Controllers\Api\GuardianController::class,'getStudentsWithDetails']);
+    });
+
+
+    ///these are routes for admin and parent and student
+    Route::group(['middleware'=>'parent.student'],function (){
         Route::get('/grades-terms/{studentId}',[\App\Http\Controllers\Api\GuardianController::class,'getGradesAndHisTermsForStudent']);
         Route::get('/results/{studentId}/{gradeId}/{termId}',[\App\Http\Controllers\Api\GuardianController::class,'getResultsByGradeAndTerm']);
     });
+
+
 });
 
 Route::get('/trips',[\App\Http\Controllers\Api\LandingController::class,'trips']);
