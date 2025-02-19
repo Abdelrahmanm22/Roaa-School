@@ -60,16 +60,33 @@ class StudentController extends Controller
     public function getVideos($subject_id)
     {
         $user = auth()->user();
-        if ($user->role=='admin'){
-            return $this->apiResponse(null,'Hello Admin, please login with student account to get data',403);
+        if ($user->role == 'admin') {
+            return $this->apiResponse(null, 'Hello Admin, please login with student account to get data', 403);
         }
 
         $student = $user->student;
 
-        $videos = $this->VideoService->getVideosforSubjectforStudent($student->current_grade_id,$student->current_term_id,$subject_id);
+        // Retrieve the subject name
+        $subject = $this->SubjectService->getSubjectById($subject_id);
+        if (!$subject) {
+            return $this->apiResponse(null, "Subject not found", 404);
+        }
 
-        return $this->apiResponse($videos, "Videos retrieved successfully", 200);
+        // Retrieve the videos for the student, grade, term, and subject
+        $videos = $this->VideoService->getVideosForSubjectForStudent(
+            $student->current_grade_id,
+            $student->current_term_id,
+            $subject_id
+        );
+
+        $response = [
+            'subject_name' => $subject->name,
+            'videos' => $videos
+        ];
+
+        return $this->apiResponse($response, "Videos retrieved successfully", 200);
     }
+
 
     public function mark($id)
     {

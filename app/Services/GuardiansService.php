@@ -47,6 +47,13 @@ class GuardiansService
         return Guardian::retrieveGuardiansWithStudents(null,"قيد الانتظار");
 
     }
+
+    // Method to get guardians with pending students and their data
+    public function getGuardiansWithPendingDataStudents()
+    {
+        return Guardian::retrieveGuardiansWithPendingDataStudents();
+    }
+
     //Recent guardians who have students with a status of "قيد الانتظار"
     public function getRecentGuardiansWithPendingStudents()
     {

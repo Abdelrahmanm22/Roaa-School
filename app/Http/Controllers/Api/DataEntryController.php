@@ -42,8 +42,8 @@ class DataEntryController extends Controller
     {
 
         $trip = $this->TripService->createTrip($request);
-        if ($trip==0)return $this->apiResponse(0,"size of array equal 0",200);
-        return $this->apiResponse($trip,"Add New Trip Successfully",201);
+        if ($trip)return $this->apiResponse($trip,"Add New Trip Successfully",201);
+        return $this->apiResponse(0,"size of array equal 0",200);
     }
 
     public function deleteTrip($id)

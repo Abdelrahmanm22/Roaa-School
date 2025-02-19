@@ -74,4 +74,33 @@ class AuthController extends Controller
             'user' => auth()->user()
         ]);
     }
+
+    public function updatePassword(Request $request)
+    {
+        
+        $user = auth()->user();
+        
+        // Validate request
+        $validator = Validator::make($request->all(), [
+            'current_password' => 'required',
+            'new_password' => 'required|min:6|confirmed',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->apiResponse(null, $validator->errors()->first(), 400);
+        }
+
+
+
+        // Check if the current password is correct
+        if (!\Hash::check($request->current_password, $user->password)) {
+            return $this->apiResponse(null, 'Current password is incorrect', 401);
+        }
+
+        // Update password
+        $user->update(['password' => bcrypt($request->new_password)]);
+
+        return $this->apiResponse(null, 'Password updated successfully', 200);
+    }
+
 }

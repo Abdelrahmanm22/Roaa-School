@@ -4,9 +4,17 @@ namespace App\Services;
 
 use App\Models\Grade;
 use App\Models\Student;
+use App\Models\Subject;
 use Illuminate\Support\Facades\DB;
 class SubjectsService
 {
+
+    public function getSubjectById($subjectId)
+    {
+        return Subject::find($subjectId);
+    }
+
+
     public function getSubjectsForGradeAndTerm(int $gradeId, int $termId)
     {
 

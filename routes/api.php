@@ -57,12 +57,10 @@ Route::group(['middleware'=>'jwt.verify'],function(){
         Route::get('/recentParents/pendingStudents',[\App\Http\Controllers\Api\DataEntryController::class,'getRecentParents']);
         Route::get('/parents/acceptedStudents',[\App\Http\Controllers\Api\DataEntryController::class,'getParentsWithAcceptedStudents']);
         Route::get('/parent/{id}',[\App\Http\Controllers\Api\DataEntryController::class,'getParent']);
-        Route::put('/student/{studentId}/status',[\App\Http\Controllers\Api\DataEntryController::class,'updateStudentStatus']);
         Route::get('/student/{studentId}/subjects',[\App\Http\Controllers\Api\DataEntryController::class,'getSubjectsForStudent']);
         Route::get('/students/{gradeId}/{termId}',[\App\Http\Controllers\Api\DataEntryController::class,'getStudentsByGradeAndTerm']);
         Route::post('/results/add', [\App\Http\Controllers\Api\DataEntryController::class, 'addResults']);
         Route::post('/student/add',[\App\Http\Controllers\Api\DataEntryController::class,'addStudent']);
-        Route::get('/students/accepted',[\App\Http\Controllers\Api\DataEntryController::class,'getAcceptedStudents']);
     });
     ///these are routes for admin and media
     Route::group(['middleware'=>'media'],function (){
@@ -97,4 +95,7 @@ Route::get('/trips',[\App\Http\Controllers\Api\LandingController::class,'trips']
 Route::post('/job/add', [\App\Http\Controllers\Api\LandingController::class, 'createJob']);
 Route::post('/register',[\App\Http\Controllers\Api\LandingController::class,'addGuardianWithStudents']);
 Route::post('/check-passport-number', [\App\Http\Controllers\Api\LandingController::class, 'checkPassportNumber']);
+
+
+require __DIR__.'/system.php';
 

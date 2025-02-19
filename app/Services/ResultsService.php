@@ -63,6 +63,7 @@ class ResultsService
         $results = Result::where('student_id', $studentId)
             ->where('grade_id', $gradeId)
             ->where('term_id', $termId)
+            ->with('subject') // Load the related subject
             ->get();
 
         // Check if any results are found, return null if none

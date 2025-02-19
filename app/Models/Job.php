@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Carbon\Carbon;
 class Job extends Model
 {
     use HasFactory;
@@ -21,4 +21,10 @@ class Job extends Model
     protected $hidden = [
         'updated_at',
     ];
+
+    // Accessor for created_at to format the date
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->format('Y-m-d');
+    }
 }

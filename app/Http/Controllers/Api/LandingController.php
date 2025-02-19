@@ -40,7 +40,8 @@ class LandingController extends Controller
              $guardian = $this->GuardianService->createGuardian($request);
              $students = [];
              foreach ($request->input('students') as $student){
-                 $students[] = $this->StudentService->createStudent($student,$guardian->user_id);
+                 $newStudent = $this->StudentService->createStudent($student,$guardian->user_id);
+                 $students[] = $newStudent;
              }
 
              DB::commit();

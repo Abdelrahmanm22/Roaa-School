@@ -51,6 +51,7 @@ class AddGuardianWithStudentsRequest extends FormRequest
             'guardian.apartment_number' => 'nullable|string|max:20',
             'students' => 'array',
             'students.*.name' => 'required|string|between:3,255',
+            'students.*.password' => 'string|confirmed|min:6',
             'students.*.passport_number' => [
                 'required',
                 'string',
@@ -89,6 +90,8 @@ class AddGuardianWithStudentsRequest extends FormRequest
             'guardian.passport_number.max' => 'يجب ألا يتجاوز رقم جواز السفر 50 حرفاً.',
             'guardian.passport_number.unique' => 'رقم جواز السفر مستخدم بالفعل.',
             'students.*.name.required' => 'اسم الطالب مطلوب.',
+            'students.*.password.confirmed'=>'يجب تأكيد كلمة المرور.',
+            'students.*.password.min'=>'يجب أن تكون كلمة المرور على الأقل 6 أحرف.',
             'students.*.name.between' => 'يجب أن يكون اسم الطالب بين 3 و 255 حرفاً.',
             'students.*.passport_number.required' => 'رقم جواز سفر الطالب مطلوب.',
             'students.*.passport_number.max' => 'يجب ألا يتجاوز رقم جواز سفر الطالب 50 حرفاً.',

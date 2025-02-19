@@ -50,7 +50,8 @@ class StudentsService
 
     public function createStudent($student,$guardian_id)
     {
-        $user = $this->UserService->createUser($student,'student');
+        $status = isset($student['status']) && $student['status'] === 'مقبول' ? 'مقبول' : 'قيد الانتظار';
+        $user = $this->UserService->createUser($student,'student',$status);
         return Student::create([
             'user_id' => $user->id,
             'guardian_id' => $guardian_id,
@@ -62,6 +63,7 @@ class StudentsService
             'relationship'=>$student['relationship'],
             'current_grade_id'=>$student['current_grade_id'],
             'current_term_id'=>1,
+            'status'=>$status,  // Set the status based on the check
         ]);
     }
 
@@ -102,7 +104,6 @@ class StudentsService
             }
             $student->grades()->attach($student->current_grade_id);
             $student->terms()->attach($student->current_term_id);
-
         }
         return $student;
     }
@@ -127,7 +128,7 @@ class StudentsService
     {
         return Guardian::with(['students' => function ($query) {
             $query->where('status', 'مقبول')
-                ->with(['currentGrade', 'currentTerm']);
+                ->with(['user','currentGrade', 'currentTerm']);
         }])
             ->where('user_id', $guardianId)
             ->first();
